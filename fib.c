@@ -4,7 +4,7 @@ int main()
 {
   int row, c, n, s;
  
-  printf("Enter the number of rows in pyramid of stars you wish to see\n");
+  printf("Enter the number of rows in traingle\n");
   scanf("%d", &n);
  
   s = n;
@@ -16,7 +16,7 @@ int main()
  
     s--;
  
-    for (c = 1; c <= 2*row - 1; c++) // Loop to print stars in a row
+    for (c = 1; c <= 2*row - 1; c++) 
       printf("*");
  
     printf("\n");
