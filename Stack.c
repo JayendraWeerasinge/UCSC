@@ -1,83 +1,107 @@
-//#include<stdio.h>
-int MAXSIZE = 8;
-int stack[8];
-int top = -1;
 
-int isempty()
+#include <stdio.h>
+#define MAXSIZE 5
+ 
+struct stack
 {
-
-    if (top == -1)
-        return 1;
-    else
-        return 0;
-}
-
-int isfull()
+    int stk[MAXSIZE];
+    int top;
+};
+typedef struct stack STACK;
+STACK s;
+ 
+void push(void);
+int  pop(void);
+void display(void);
+ 
+void main ()
 {
-
-    if (top == MAXSIZE)
-        return 1;
-    else
-        return 0;
-}
-
-int peek()
-{
-    return stack[top];
-}
-
-int pop()
-{
-    int data;
-
-    if (!isempty())
+    int choice;
+    int option = 1;
+    s.top = -1;
+ 
+    printf ("STACK OPERATION\n");
+    while (option)
     {
-        data = stack[top];
-        top = top - 1;
-        return data;
+        printf ("------------------------------------------\n");
+        printf ("      1    -->    PUSH               \n");
+        printf ("      2    -->    POP               \n");
+        printf ("      3    -->    DISPLAY               \n");
+        printf ("      4    -->    EXIT           \n");
+        printf ("------------------------------------------\n");
+ 
+        printf ("Enter your choice\n");
+        scanf    ("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            return;
+        }
+        fflush (stdin);
+        printf ("Do you want to continue(Type 0 or 1)?\n");
+        scanf    ("%d", &option);
+    }
+}
+
+void push ()
+{
+    int num;
+    if (s.top == (MAXSIZE - 1))
+    {
+        printf ("Stack is Full\n");
+        return;
     }
     else
     {
-        printf("Could not retrieve data, Stack is empty.\n");
+        printf ("Enter the element to be pushed\n");
+        scanf ("%d", &num);
+        s.top = s.top + 1;
+        s.stk[s.top] = num;
     }
+    return;
 }
 
-int push(int data)
+int pop ()
 {
-
-    if (!isfull())
+    int num;
+    if (s.top == - 1)
     {
-        top = top + 1;
-        stack[top] = data;
+        printf ("Stack is Empty\n");
+        return (s.top);
     }
     else
     {
-        printf("Could not insert data, Stack is full.\n");
+        num = s.stk[s.top];
+        printf ("poped element is = %dn", s.stk[s.top]);
+        s.top = s.top - 1;
     }
+    return(num);
 }
 
-int main()
+void display ()
 {
-    // push items on to the stack
-    push(3);
-    push(5);
-    push(9);
-    push(1);
-    push(12);
-    push(15);
-
-    printf("Element at top of the stack: %d\n", peek());
-    printf("Elements: \n");
-
-    // print stack data
-    while (!isempty())
+    int i;
+    if (s.top == -1)
     {
-        int data = pop();
-        printf("%d\n", data);
+        printf ("Stack is empty\n");
+        return;
     }
-
-    printf("Stack full: %s\n", isfull() ? "true" : "false");
-    printf("Stack empty: %s\n", isempty() ? "true" : "false");
-
-    return 0;
+    else
+    {
+        printf ("\n The status of the stack is \n");
+        for (i = s.top; i >= 0; i--)
+        {
+            printf ("%d\n", s.stk[i]);
+        }
+    }
+    printf ("\n");
 }

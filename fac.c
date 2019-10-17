@@ -1,16 +1,16 @@
 #include<stdio.h>
 
 int main(){
-	int num;
+	int numbers;
 	printf("Enter number: \n");
-	scanf("%d", &num);
+	scanf("%d", &numbers);
 	
-	printf("Factorial is : %d \n", fac(num));
+	printf("Factorial is : %d \n", fac(numbers));
 	
 }
-int fac(int num){
-	if(num>1)
-		return num*fac(num-1);
+int fac(int number){
+	if(number>1)
+		return number*fac(number-1);
 	else
 		return 1;
 }
