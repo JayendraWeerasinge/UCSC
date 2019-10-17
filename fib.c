@@ -2,24 +2,24 @@
  
 int main()
 {
-  int n, first = 0, second = 1, next, c;
+  int row, c, n, s;
  
-  printf("Enter the number of terms\n");
+  printf("Enter the number of rows in pyramid of stars you wish to see\n");
   scanf("%d", &n);
  
-  printf("First %d terms of Fibonacci series are:\n", n);
+  s = n;
  
-  for (c = 0; c < n; c++)
+  for (row = 1; row <= n; row++)  // Loop to print rows
   {
-    if (c <= 1)
-      next = c;
-    else
-    {
-      next = first + second;
-      first = second;
-      second = next;
-    }
-    printf("%d\n", next);
+    for (c = 1; c < s; c++)  // Loop to print spaces in a row
+      printf(" ");
+ 
+    s--;
+ 
+    for (c = 1; c <= 2*row - 1; c++) // Loop to print stars in a row
+      printf("*");
+ 
+    printf("\n");
   }
  
   return 0;
